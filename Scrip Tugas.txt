@@ -1,0 +1,49 @@
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+open=guidata(gcbo);
+[namafile]=uigetfile({'*.jpg;*.bmp;*.tif'},'openimage');
+I=imread(namafile);
+set(open.figure1,'CurrentAxes',open.axes1);
+set(imagesc(I));colormap('gray');
+set(open.axes1,'Userdata',I);
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton2.
+function pushbutton2_Callback(hObject, eventdata, handles)
+open=guidata(gcbo);
+A = double(get(open.axes1,'Userdata'));
+B = rgb2gray(A);
+level = graythresh(B);
+C = im2bw (B,level);
+ans= 5.6301e+05
+bwarea (C)
+
+set(open.figure1,'CurrentAxes',open.axes2);
+set(imagesc(C));colormap('gray');
+set(open.axes2,'Userdata',C);
+% hObject    handle to pushbutton2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+open=guidata(gcbo)
+A = double(get(open.axes1,'Userdata'));
+B = rgb2gray(A);
+level = graythresh(B);
+C = im2bw (B,level);
+D = bwperim (C);
+perimeter = sum (sqrt (sum(D,3)))
+
+perimeter = 160.5321
+
+set(open.figure1,'CurrentAxes',open.axes3);
+set(imagesc(D));colormap('gray');
+set(open.axes3,'Userdata',D);
+% hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
